@@ -16,17 +16,17 @@ func genSquare(square: [Int], currentSquare: [Int], index: Int) {
     if index == 9 {
         let check = allDifferent(preSquare: currentSquared, place: 0)
         if check == true {
-            printSquare(endSquare: currentSquared)
+            let checkers = isMagic(squared: currentSquared)
+            if checkers == true {
+                printSquare(endSquare: currentSquared)
+            }
         }
     } else {
-        while value <= 8 {
-            currentSquared[index] = value + 1
-            print(currentSquared)
+        for number in 0...8 {
+            currentSquared[index] = number + 1
             let placement = index + 1
-            value += 1
             genSquare(square: square, currentSquare: currentSquared,
                       index: placement)
-
         }
     }
 }
@@ -58,21 +58,35 @@ func allDifferent(preSquare: [Int], place: Int) -> Bool {
 }
 
 func printSquare(endSquare: [Int]) {
-    let barrier = "\n*****"
+    let barrier = "\n*********"
     let space = " "
     let nextLine = "\n"
     print(barrier)
     var length = 0
-    while length < endSquare.count {
-        if length == 3 || length == 6 {
+    while length <= 6 {
+        print(endSquare[length], space, endSquare[length + 1], space,
+            endSquare[length + 2])
+        if length != 6 {
             print(nextLine)
-            print(endSquare[length], space)
-        } else {
-            print(endSquare[length], space)
         }
-        length += 1
+        length += 3
     }
     print(barrier)
 }
+
+func isMagic(squared: [Int]) -> Bool {
+    let row1 = squared[0] + squared[1] + squared[2]
+    let row2 = squared[3] + squared[4] + squared[5]
+    let row3 = squared[6] + squared[7] + squared[8]
+    let col1 = squared[0] + squared[3] + squared[6]
+    let col2 = squared[1] + squared[4] + squared[7]
+    let col3 = squared[2] + squared[5] + squared[8]
+    let diag1 = squared[0] + squared[4] + squared[8]
+    let diag2 = squared[2] + squared[4] + squared[6]
+    return (row1 == magicNum && row2 == magicNum && row3 == magicNum
+           && col1 == magicNum && col2 == magicNum && col3 == magicNum
+           && diag1 == magicNum && diag2 == magicNum)
+}
+
 
 genSquare(square: magicSquare, currentSquare: extraArray, index: begin)
