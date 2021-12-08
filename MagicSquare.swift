@@ -33,7 +33,7 @@ func genSquare(square: [Int], currentSquare: [Int], index: Int) {
 
 func allDifferent(preSquare: [Int], place: Int) -> Bool {
     var answer = true
-    if (place == 8) {
+    if place == 8 {
         answer = true
     } else {
         var result = 0
@@ -58,35 +58,34 @@ func allDifferent(preSquare: [Int], place: Int) -> Bool {
 }
 
 func printSquare(endSquare: [Int]) {
-    let barrier = "\n*********"
-    let space = " "
-    let nextLine = "\n"
-    print(barrier)
-    var length = 0
-    while length <= 6 {
-        print(endSquare[length], space, endSquare[length + 1], space,
-            endSquare[length + 2])
-        if length != 6 {
-            print(nextLine)
-        }
-        length += 3
+  let barrier = "\n*********"
+  let space = " "
+  let nextLine = "\n"
+  print(barrier)
+  var length = 0
+  while length <= 6 {
+    print(endSquare[length], space, endSquare[length + 1], space,
+    endSquare[length + 2])
+    if length != 6 {
+      print(nextLine)
     }
-    print(barrier)
+    length += 3
+  }
+  print(barrier)
 }
 
 func isMagic(squared: [Int]) -> Bool {
-    let row1 = squared[0] + squared[1] + squared[2]
-    let row2 = squared[3] + squared[4] + squared[5]
-    let row3 = squared[6] + squared[7] + squared[8]
-    let col1 = squared[0] + squared[3] + squared[6]
-    let col2 = squared[1] + squared[4] + squared[7]
-    let col3 = squared[2] + squared[5] + squared[8]
-    let diag1 = squared[0] + squared[4] + squared[8]
-    let diag2 = squared[2] + squared[4] + squared[6]
-    return (row1 == magicNum && row2 == magicNum && row3 == magicNum
-           && col1 == magicNum && col2 == magicNum && col3 == magicNum
-           && diag1 == magicNum && diag2 == magicNum)
+  let row1 = squared[0] + squared[1] + squared[2]
+  let row2 = squared[3] + squared[4] + squared[5]
+  let row3 = squared[6] + squared[7] + squared[8]
+  let col1 = squared[0] + squared[3] + squared[6]
+  let col2 = squared[1] + squared[4] + squared[7]
+  let col3 = squared[2] + squared[5] + squared[8]
+  let diag1 = squared[0] + squared[4] + squared[8]
+  let diag2 = squared[2] + squared[4] + squared[6]
+  return (row1 == magicNum && row2 == magicNum && row3 == magicNum
+       && col1 == magicNum && col2 == magicNum && col3 == magicNum
+       && diag1 == magicNum && diag2 == magicNum)
 }
-
 
 genSquare(square: magicSquare, currentSquare: extraArray, index: begin)
